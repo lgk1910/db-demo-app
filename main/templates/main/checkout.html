@@ -1,0 +1,62 @@
+{% extends "main/base.html" %}
+
+{% block sitename %}
+    Checkout
+{% endblock %}
+
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3 mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <a href="#" class="cancel com-color">Cancel and return to website</a>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="mb-0 text-success">{{ cart.total_price}} VND</h5>
+                <h5 class="mb-3">CHOOSE CARD</h5>
+                <p>Choose one of the following card for payment or you can add a new card.</p>
+
+                <div class="about">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex flex-row mt-1">
+                            <h6> Balance </h6>
+                            <!-- <h6 class="text-success font-weight-bold ml-1"> &emsp; $13.24 </h6> -->
+                        </div>
+                        <div class="d-flex flex-row align-items-center com-color"> <i class="fa fa-plus-circle"></i><span class="ml-1"> <a href="/insertcard">Add Payment card</a></span></div>
+                    </div>
+                    <form action="/finish_payment/" method="POST">
+                        {% csrf_token %}
+                        <div class="d-flex flex-column"> 
+                            {% for i, card, hidden_card_code in cards %}
+                            <label class="radio"> <input type="radio" name="card" value="{{card.id}}" checked>
+                                <div class="d-flex justify-content-between"> 
+                                    <span>Card {{ i }}</span> <span>{{hidden_card_code}}</span> 
+                                </div>
+                            </label> 
+                            {% endfor %}
+                            <!-- <label class="radio"> <input type="radio" name="gender" value="FEMALE">
+                                <div class="d-flex justify-content-between"> 
+                                    <span>MASTER CARD</span> <span>**** 5069</span> 
+                                </div>
+                            </label>  -->
+                        </div>
+                        <div class="buttons"> <button type="submit" class="btn btn-success btn-block">Proceed to payment</button> </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"> </div>
+            <div class="col-md-4">
+                <div class="bg-pay p-3"> <span class="font-weight-bold">Order Recap</span>
+                    <div class="d-flex justify-content-between mt-2"> <span class="fw-500">Temporary Price</span> <span>{{ cart.total_price }} VND</span> </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mt-2"> <span class="lh-16 fw-500">Shipping fee </span><span>0 VND</span> </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mt-2"> <span class="fw-500">Total</span> <span class="text-success">{{ cart.total_price }} VND</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

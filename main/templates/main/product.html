@@ -1,0 +1,84 @@
+{% extends "main/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block sitename %}
+    Product detail
+{% endblock %}
+
+{% block title %}
+    Product detail
+{% endblock %}
+
+{% block content %}
+    <!--Section: Block Content-->
+    <section class="mb-7">
+        <div class="row">
+            <div class="col-md-6 mb-4 mb-md-0">
+
+                <div id="mdb-lightbox-ui"></div>
+
+                <div class="mdb-lightbox">
+
+                    <div class="row product-gallery mx-1">
+
+                        <div class="col-12 mb-0">
+                            <figure class="view overlay rounded z-depth-1 main-img">
+                                <a href="{{ book.url }}" data-size="710x823">
+                                    <img src="{{ book.url }}" class="img-fluid z-depth-1">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <h5>{{ book.book_name }}</h5>
+                <p class="mb-2 text-muted text-uppercase small">{{ book.isbn }}</p>
+                <!-- <p class="pt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit
+                              error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio,
+                              officia quis dolore quos sapiente tempore alias.</p> -->
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless mb-0">
+                        <tbody>
+                            <tr>
+                                <th class="pl-0 w-25" scope="row">
+                                    <strong>Buy for</strong>
+                                </th>
+                                <td><strong>{{ book.buy_price }} VND</strong></td>
+                            </tr>
+                            <tr>
+                                <th class="pl-0 w-25" scope="row">
+                                    <strong>Rent for</strong>
+                                </th>
+                                <td><strong>{{ book.rent_price }} VND</strong></td>
+                            </tr>
+                            <tr>
+                                <th class="pl-0 w-25" scope="row">
+                                    <strong>Stock</strong>
+                                </th>
+                                <td><strong>{{ quantity }} </strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div style="margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary btn-md mr-1 mb-2 btn-success" name="buy" value="buy">Buy now</button>
+                        <button type="submit" class="btn btn-primary btn-md mr-1 mb-2 btn-success" name="rent" value="rent">Rent now</button>
+                        <!-- <button type="submit" class="btn btn-light btn-md mr-1 mb-2 btn-success">
+                            <i class="fas fa-shopping-cart pr-2"></i>Add to cart</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    <!--Section: Block Content-->
+{% endblock %}

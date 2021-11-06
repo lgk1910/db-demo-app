@@ -1,0 +1,35 @@
+{% extends "main/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block sitename %}
+    Product detail
+{% endblock %}
+
+{% block title %}
+    Product detail
+{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-lg-7 mx-auto">
+                <div class="card shadow mb-4">
+                    <div class="card-body p-5">
+                        <h4 class="mb-4">Report for {{ date }} </h4>
+                        <!-- List with bullets -->
+                        <ul class="list-bullets">
+                            <li class="mb-2">Sold books: {{sold_books}}</li>
+                            <li class="mb-2">Rent books: {{rent_books}}</li>
+                            <li class="mb-2">{{ sold_count }} books sold</li>
+                            <li class="mb-2">{{rent_count}} books rent</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block title %} Query report {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %} 
+<h3>Query report page</h3>
+<form method="post" action="/report/" class="form-group">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="input-group mb-3" style="margin-top: 20px;">
+        <div class="input-group-prepend">
+            <button type="submit" name="query" class="btn btn-success">Query</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

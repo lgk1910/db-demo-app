@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block title %} Insert new card {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %} 
+<h3>Insert card page</h3>
+<form method="post" action="/insertcard/" class="form-group">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="input-group mb-3" style="margin-top: 20px;">
+        <div class="input-group-prepend">
+            <button type="submit" name="save" class="btn btn-success">Insert New Card</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+
+{% block sitename %}
+    Books
+{% endblock %}
+
+{% block title %}
+    Books
+{% endblock %}
+
+{% block content %}
+{% for book, quantity in book_quantity %}
+    <div class="d-flex justify-content-center container mt-5">
+        <div class="card p-3 bg-white"><i class="fa fa-apple"></i>
+            <a href="../p{{ book.isbn }}">
+                <div class="about-product text-center mt-2"><img src="{{ book.url }}" width="300">
+                    <div>
+                        <h4>{{ book.book_name }}</h4>
+                        <h6 class="mt-0 text-black-50">{{ book.isbn }}</h6>
+                    </div>
+                </div>
+            </a>
+            <div class="stats mt-2">
+                <div class="d-flex justify-content-between p-price"><span>Buy for</span><span>{{ book.buy_price }}</span></div>
+                <div class="d-flex justify-content-between p-price"><span>Rent for</span><span>{{ book.rent_price }}</span></div>
+                <div class="d-flex justify-content-between p-price"><span>Stock</span><span>{{ quantity }}</span></div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
