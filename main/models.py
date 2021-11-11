@@ -94,7 +94,7 @@ class Card(models.Model):
     branch_name = models.CharField(max_length=255) 
     bank = models.CharField(max_length=255)
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    cvv = models.IntegerField(unique=True)
+    cvv = models.IntegerField()
     balance = models.IntegerField(default=200000)
 
     def __str__(self):

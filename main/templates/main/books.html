@@ -10,6 +10,7 @@
 
 {% block content %}
 {% for book, quantity in book_quantity %}
+    {% if quantity %}
     <div class="d-flex justify-content-center container mt-5">
         <div class="card p-3 bg-white"><i class="fa fa-apple"></i>
             <a href="../p{{ book.isbn }}">
@@ -27,5 +28,6 @@
             </div>
         </div>
     </div>
+    {% endif %}
 {% endfor %}
 {% endblock %}
